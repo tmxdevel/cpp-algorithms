@@ -11,10 +11,18 @@ set(HEADER_FILES algo_utils.h
     algo_structures.h
     algo_2d.h
     testing/bechtimer.h
-    testing/algobenchs.h)
+    testing/algobenchs.h
+    data_structures/linked_list.h
+    data_structures/cyclic_array.h)
 set(SOURCE_FILES
     testing/bechtimer.cpp
     testing/algobenchs.cpp)
 
 add_executable(CAlgo main.cpp ${HEADER_FILES} ${SOURCE_FILES})
-target_include_directories(CAlgo PRIVATE ${CMAKE_CURRENT_LIST_DIR} ${CMAKE_CURRENT_LIST_DIR}/testing)
+target_include_directories(CAlgo PRIVATE
+    ${CMAKE_CURRENT_LIST_DIR}
+    ${CMAKE_CURRENT_LIST_DIR}/testing
+    ${CMAKE_CURRENT_LIST_DIR}/data_structures)
+
+install(TARGETS CAlgo DESTINATION ${CMAKE_CURRENT_LIST_DIR}/build)
+install(DIRECTORY datasets DESTINATION ${CMAKE_CURRENT_LIST_DIR}/build)

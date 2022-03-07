@@ -14,6 +14,7 @@ public:
     AlgoBenchs();
 
     void testPoints(int iterations);
+    void testPointsPtr(int iterations);
 
     void testIntSort(int iterations);
     void testLongSort(int iterations);

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <chrono>
 
@@ -7,7 +8,10 @@
 #include "algo_utils.h"
 #include "algo_sort.h"
 #include "algo_2d.h"
+#include "data_structures/linked_list.h"
 #include "testing/algobenchs.h"
+
+#define LINUX_BENCH
 
 using namespace std;
 
@@ -22,7 +26,18 @@ bool lessInt(const float *lhs, const float *rhs) {
 
 int main()
 {
-    AlgoBenchs b;
+    Algo::LinkedList<std::string> ll;
+
+    ll.append("test3");
+    ll.push("test2");
+    ll.push("test1");
+    ll.append("test4");
+
+    auto head = ll.head();
+    for(auto n = head; n != nullptr; n = n->next) {
+        cout << n->data << "   ";
+    }
+    cout << endl << ll.count() << endl;
 
     return 0;
 }
