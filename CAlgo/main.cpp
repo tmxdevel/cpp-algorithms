@@ -14,30 +14,31 @@
 #define LINUX_BENCH
 
 using namespace std;
+#include "SDL2/SDL.h"
 
-template <class Duration>
-    using sys_time = std::chrono::time_point<std::chrono::system_clock, Duration>;
-using sys_nanoseconds = sys_time<std::chrono::nanoseconds>;
-
-
-bool lessInt(const float *lhs, const float *rhs) {
-    return *lhs <= *rhs;
-}
-
-int main()
+int main(int argc, char *argv[])
 {
-    Algo::LinkedList<std::string> ll;
+  SDL_Init(SDL_INIT_VIDEO);
 
-    ll.append("test3");
-    ll.push("test2");
-    ll.push("test1");
-    ll.append("test4");
+  SDL_Window *window = SDL_CreateWindow(
+    "SDL2Test",
+    SDL_WINDOWPOS_UNDEFINED,
+    SDL_WINDOWPOS_UNDEFINED,
+    640,
+    480,
+    0
+  );
 
-    auto head = ll.head();
-    for(auto n = head; n != nullptr; n = n->next) {
-        cout << n->data << "   ";
-    }
-    cout << endl << ll.count() << endl;
+  SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+  SDL_RenderClear(renderer);
+  SDL_RenderPresent(renderer);
 
-    return 0;
+  SDL_Delay(3000);
+
+  SDL_DestroyWindow(window);
+  SDL_Quit();
+
+  return 0;
 }
+
